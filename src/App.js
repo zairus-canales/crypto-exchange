@@ -12,7 +12,7 @@ function App() {
           Crypto Exchange
         </h1>
       </header>
-      <table >
+      <table className="coin-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -23,6 +23,8 @@ function App() {
         <tbody>
           <Coin name="Bitcoin" ticker="BTC" price={20000.00}/>
           <Coin name="Ethereum" ticker="ETH" price={600.00}/>
+          <Coin name="Tether" ticker="USDT" price={1.00}/>
+          <Coin name="Ripple" ticker="XRP" price={0.20}/>
         </tbody>
       </table>
     </div>
