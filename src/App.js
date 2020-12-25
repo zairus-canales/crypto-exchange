@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -5,19 +6,23 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+          Crypto Exchange
+        </h1>
       </header>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Ticker</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <Coin name="Bitcoin" ticker="BTC" price="20000.00"/>
+          <Coin name="Ethereum" ticker="ETH" price="600.00"/>
+        </tbody>
+      </table>
     </div>
   );
 }
