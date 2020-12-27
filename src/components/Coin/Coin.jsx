@@ -10,14 +10,19 @@ const Td = styled.td`
 export default class Coin extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            price: this.props.price
-        }
-    this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     
     handleClick(event) {
         event.preventDefault();
+
+        this.props.handleRefresh(this.props.ticker);
+    }
+    /*
+        this.state = {
+            price: this.props.price
+        }
+    }
 
         const randomPercentage = 0.995 + Math.random() * 0.01;
 
@@ -27,6 +32,7 @@ export default class Coin extends Component {
                 };
             });        
    }
+   */
     render() {
         return (
             <tr>
