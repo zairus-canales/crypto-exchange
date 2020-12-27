@@ -7,8 +7,6 @@ const Td = styled.td`
     border: 1px solid #cccccc;
     width: 25vh;
 `;
-    
-
 
 export default class Coin extends Component {
     constructor(props) {
@@ -37,7 +35,9 @@ export default class Coin extends Component {
                 <Td>{this.props.ticker}</Td>
                 <Td>${this.state.price}</Td>
                 <Td>
+                    <form action="#" method="POST">
                     <button onClick={this.handleClick}>Refresh</button>
+                    </form>
                 </Td>
           </tr>
         );
