@@ -1,10 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import CoinList from './components/CoinList/CoinList';
 import AccountBalance from './components/AccountBalance/AccountBalance';
+import styled from 'styled-components';
+import CoinHeader from './components/CoinHeader/CoinHeader';
 
-export default class App extends React.Component {
+const Div = styled.div`
+    text-align: center;
+    background-color: rgb(20 56 97);
+    color: #cccccc;
+`;
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,16 +43,11 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} alt="React logo" className="App-logo"/>
-          <h1 className="App-title">
-            Crypto Exchange
-          </h1>
-        </header>
+      <Div className="App">
+        <CoinHeader />
         <AccountBalance amount={this.state.balance} />
         <CoinList coinData={this.state.coinData} />
-      </div>
+      </Div>
     );
   }
   
