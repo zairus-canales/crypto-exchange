@@ -11,9 +11,7 @@ const Div = styled.div`
 `;
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       balance: 20000,
       showBalance: true,
       coinData: [
@@ -44,10 +42,9 @@ class App extends React.Component {
       ] 
 
     }
-    this.handleRefresh = this.handleRefresh.bind(this);
-    this.handleBalanceVisibilityChange = this.handleBalanceVisibilityChange.bind(this);  
-  }
-  handleBalanceVisibilityChange() {
+   
+  
+  handleBalanceVisibilityChange = () => {
     this.setState( function(oldState) {
       return {
         ...oldState,
@@ -57,7 +54,7 @@ class App extends React.Component {
     });
   }
 
-  handleRefresh(valueChangeTicker) {
+  handleRefresh = (valueChangeTicker) => {
     const newCoinData = this.state.coinData.map( function( {ticker, name, price, balance} ) {
       let newPrice = price;
       if ( valueChangeTicker === ticker ) {
