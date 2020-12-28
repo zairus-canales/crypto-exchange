@@ -5,10 +5,14 @@ import styled from 'styled-components';
 import CoinHeader from './components/CoinHeader/CoinHeader';
 import axios from 'axios';
 
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootswatch/dist/sandstone/bootstrap.min.css';
+
+import '@fortawesome/fontawesome-free/js/all';
+
 const Div = styled.div`
     text-align: center;
-    background-color: rgb(20 56 97);
-    color: #cccccc;
+    background-color: #282c34;
 `;
 
 const COIN_COUNT = 10;
@@ -16,7 +20,7 @@ const formatPrice = price => parseFloat(Number(price).toFixed(4));
 
 function App(props) {
   const [balance, setBalance] = useState(20000);
-  const [showBalance, setShowBalance] = useState(true);
+  const [showBalance, setShowBalance] = useState(false);
   const [coinData, setCoinData] = useState([]);
 
   const componentDidMount = async () => {
@@ -44,11 +48,27 @@ function App(props) {
     }
   });
 
-  
-  
+  const handleAddBalance = () => {
+    setBalance (oldBalance => oldBalance + 1200);
+  }
+
   const handleBalanceVisibilityChange = () => {
     setShowBalance(oldValue => !oldValue);
   }
+
+  const handleTransaction = (isBuy, valueChangeId) => {
+    var balanceChange = isBuy ? 1 : -1;
+    const newCoinData = coinData.map( function(values) {
+      let newValues = {...values};
+      if ( valueChangeId === values.key) {
+        newValues.balance += balanceChange;
+        setBalance( oldBalance => oldBalance - balanceChange * newValues.price );
+      }
+      return newValues;
+    });
+    setCoinData(newCoinData);
+  }
+
   const handleRefresh = async (valueChangeId) => {
     const tickerUrl = `https://api.coinpaprika.com/v1/tickers/${valueChangeId}`;
     const response = await axios.get(tickerUrl); 
@@ -67,14 +87,15 @@ function App(props) {
       <CoinHeader />
       <AccountBalance 
         amount={balance} 
-        showBalance={showBalance} 
+        showBalance={showBalance}
+        handleAddBalance={handleAddBalance}  
         handleBalanceVisibilityChange={handleBalanceVisibilityChange}  />
       <CoinList 
         coinData={coinData} 
         showBalance={showBalance}
+        handleTransaction={handleTransaction}
         handleRefresh={handleRefresh} />
     </Div>
   );
 }
-
 export default App;

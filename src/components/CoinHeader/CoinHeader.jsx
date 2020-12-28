@@ -1,36 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react'
+import logo from './cryptoExchangeLogo.png';
 import styled from 'styled-components';
-import logo from './logo.svg';
-
-const Header = styled.header`
-    background-color: #282c34;
-    min-height: 20vh;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    font-size: calc(10px + 2vmin);
-    color: white;
-`;
 
 const Img = styled.img`
-    height: 20vmin;
+    height: 7.5rem;
     pointer-events: none;
 `;
 
+const Header = styled.header`
+    background-color: #282c34;
+    min-height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center center;
+    justify-content: flex-start;
+`;
+  
 const H1 = styled.h1`
     font-size: 4rem;
+    line-height: 7.5rem;
+    font-weight: bold;
+    min-width: 100px;
+    color: white;
 `;
 
-export default class CoinHeader extends Component {
-    render() {
-        return (
-        <Header>
-          <Img src={logo} alt="React logo"/>
-          <H1>
-            Crypto Exchange
-          </H1>
-        </Header>
-        )
-    }
+export default function CoinHeader() {
+    return (
+    <Header>
+      <Img src={logo} alt="CryptoExchange logo" /> 
+      <H1> 
+        Crypto Exchange
+      </H1>
+    </Header>
+    ) 
 }
